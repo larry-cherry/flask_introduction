@@ -5,8 +5,43 @@
             Flask Intro
         </title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <style>
+            .place {
+                border: 5px solid ivory;
+                border-radius: 10px;
+                width: 350px;
+                margin: auto;
+                margin-top: 15px;
+            }
+            img {
+                width: 350px;
+            }
+            h1 {
+                text-align: center;
+            }
+            h2 {
+                color: ivory;
+                text-align: center;
+            }
+            p {
+                color: ivory;
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
+        {% set heading = "A List of amazing places to travel to" %}
         <h1>{{ heading }}</h1>
+        {% for place in places %}
+            <div class='place'>
+                <h2>{{place["name"]}}</h2>
+                <img src='{{place["image"]}}'>
+                {% if places["description"] %}
+                    <p>{{place["description"]}}</p>
+                {% else %}
+                    <p>No description given</p>
+                {% endif %}
+            </div>
+        {% endfor %}
     </body>
 </html>
